@@ -1,0 +1,8 @@
+torch==1.13.0
+torchvision==0.14.0+cu116
+-f https://download.pytorch.org/whl/torch_stable.html
+monai==1.0
+nibabel==4.0.2
+numpy==1.23.5
+path==16.5.0
+tqdm==4.64.1

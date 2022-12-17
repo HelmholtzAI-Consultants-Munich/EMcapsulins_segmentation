@@ -18,7 +18,8 @@ We include some example input and output files for replication.
 2) Go into the repository and install:
     ```
     cd EMcapsulins_segmentation
-    pip install -r requirements.txt 
+    pip install -r requirements.txt
+    pip install -e .
     ```
 ## Usuage
 

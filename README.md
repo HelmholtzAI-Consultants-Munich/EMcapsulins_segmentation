@@ -1,5 +1,6 @@
 # EMcapsulins segmentation
-Deep learning models to segment emcapsulins in 2D TEM micrograph images from the manuscript Genetically encoded barcodes for correlative volume electron microscopy.
+Deep learning models to segment emcapsulins in 2D TEM micrograph images from the manuscript:
+`Genetically encoded barcodes for correlative volume electron microscopy`
 
 ## Expected data
 The models are trained on 8-bit images with a pixel size: of 0.5525 per nanometer.

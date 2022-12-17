@@ -5,6 +5,10 @@ Deep learning models to segment emcapsulins in 2D TEM micrograph images from the
 The models are trained on 8-bit images with a pixel size: of 0.5525 per nanometer.
 We include some example input and output files for replication.
 
+![Image](documentation/example_pngs/crop.png "cropped microscopy")
+
+
+
 ## Installation
 
 1) Clone this repository:

@@ -5,8 +5,6 @@ from statistics import multimode
 
 from skimage import measure
 
-import matplotlib.pyplot as plt
-
 from monai.transforms import Compose
 from monai.transforms.post.array import FillHoles
 
@@ -24,8 +22,6 @@ def get_circularity(numpy_array, debug):
 
     if debug == True:
         print("perimeter=0")
-        plt.imshow(numpy_array.astype(dtype="uint32"), interpolation="nearest")
-        plt.savefig("debug/zero.png")
         print("circularity:", circularity)
 
     return circularity
@@ -183,9 +179,6 @@ def postprocess(
         for uni, count in zip(pre_uniques, pre_counts):
             print("unique:", uni, "// count:", count)
 
-        plt.imshow(raw_segmentation.astype(dtype="uint32"), interpolation="nearest")
-        plt.savefig("debug/pre.png")
-
         print("Post:")
         print(multi_segmentation.shape)
         components, post_N = cc3d.connected_components(
@@ -194,8 +187,5 @@ def postprocess(
         print(post_N)
         for uni, count in zip(uniques, counts):
             print("unique:", uni, "// count:", count)
-
-        plt.imshow(multi_segmentation.astype(dtype="uint32"), interpolation="nearest")
-        plt.savefig("debug/post.png", dpi=1200)
 
     return True

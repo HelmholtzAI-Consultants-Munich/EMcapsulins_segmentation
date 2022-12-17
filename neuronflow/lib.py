@@ -27,6 +27,7 @@ from monai.transforms import (
 
 # custom
 from neuronflow.output import create_output_files
+from neuronflow.postprocessing import postprocess
 
 
 # GO
@@ -235,6 +236,11 @@ def inference_to_directory(
                     mmMx_output_file=identity + "_out-2M-Mx.nii.gz",
                     mTm_output_file=identity + "_out-1M-Tm.nii.gz",
                     mQtTm_output_file=identity + "_out-1M-Qt-Tm.nii.gz",
+                )
+
+                postprocess(
+                    raw_segmentation_file=segmentation_file,
+                    polished_segmentation_file=identity + "_postprocessed.nii.gz",
                 )
 
     if verbosity == True:

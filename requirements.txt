@@ -1,11 +1,10 @@
-torch==1.13.0
-torchvision==0.14.0+cu116
+torch==1.13
+torchvision
 -f https://download.pytorch.org/whl/torch_stable.html
 monai==1.0
 nibabel==4.0.2
 numpy==1.23.5
 path==16.5.0
 tqdm==4.64.1
--e git+ssh://git@github.com/HelmholtzAI-Consultants-Munich/EMcapsulins_segmentation.git@b73ede5707553f0e8369ba29d080728e631417b1#egg=neuronflow
 itk==5.3.0
 connected-components-3d==3.10.3

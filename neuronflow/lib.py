@@ -31,12 +31,20 @@ from neuronflow.postprocessing import postprocess
 
 
 # GO
-def inference_to_directory(
+def single_inference(
     microscopy_file,
-    # segmentation_file,
-    output_folder,
-    prefix,
-    binary_threshold=0.5,
+    segmentation_file,
+    binary_segmentation_file=None,
+    binary_threshold=None,
+    background_output_file=None,
+    foreground_output_file=None,
+    mQt_output_file=None,
+    mmQt_output_file=None,
+    mmmQt_output_file=None,
+    mMx_output_file=None,
+    mmMx_output_file=None,
+    mTm_output_file=None,
+    mQtTm_output_file=None,
     cuda_devices="1",
     tta=True,
     sliding_window_batch_size=32,
@@ -224,18 +232,18 @@ def inference_to_directory(
 
                 create_output_files(
                     onehot_model_outputs_CHW=onehot_model_output,
-                    output_file=segmentation_file,
-                    binary_output_file=identity + "_binary-segmentation.nii.gz",
+                    segmentation_file=segmentation_file,
+                    binary_segmentation_file=binary_segmentation_file,
                     binary_threshold=binary_threshold,
-                    background_output_file=identity + "_out-bg.nii.gz",
-                    foreground_output_file=identity + "_out-fg.nii.gz",
-                    mQt_output_file=identity + "_out-1M-Qt.nii.gz",
-                    mmQt_output_file=identity + "_out-2M-Qt.nii.gz",
-                    mmmQt_output_file=identity + "_out-3M-Qt.nii.gz",
-                    mMx_output_file=identity + "_out-1M-Mx.nii.gz",
-                    mmMx_output_file=identity + "_out-2M-Mx.nii.gz",
-                    mTm_output_file=identity + "_out-1M-Tm.nii.gz",
-                    mQtTm_output_file=identity + "_out-1M-Qt-Tm.nii.gz",
+                    background_output_file=background_output_file,
+                    foreground_output_file=foreground_output_file,
+                    mQt_output_file=mQt_output_file,
+                    mmQt_output_file=mmQt_output_file,
+                    mmmQt_output_file=mmmQt_output_file,
+                    mMx_output_file=mMx_output_file,
+                    mmMx_output_file=mmMx_output_file,
+                    mTm_output_file=mTm_output_file,
+                    mQtTm_output_file=mQtTm_output_file,
                 )
 
                 postprocess(

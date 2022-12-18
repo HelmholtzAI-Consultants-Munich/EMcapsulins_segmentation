@@ -52,5 +52,4 @@ for img in tqdm(microscopy_images):
         mav_max_threshold=500,
         mav_circularity_threshold=0.2,
         fill_holes=True,
-        debug=False,
     )

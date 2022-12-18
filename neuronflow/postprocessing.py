@@ -9,7 +9,7 @@ from monai.transforms import Compose
 from monai.transforms.post.array import FillHoles
 
 
-def get_circularity(numpy_array, debug):
+def get_circularity(numpy_array):
     props = measure.regionprops(numpy_array, numpy_array)
 
     area = props[0]["area"]
@@ -19,10 +19,6 @@ def get_circularity(numpy_array, debug):
         circularity = _calculate_circularity(perimeter, area)
     else:
         circularity = 1
-
-    if debug == True:
-        print("perimeter=0")
-        print("circularity:", circularity)
 
     return circularity
 
@@ -59,7 +55,6 @@ def postprocess(
     mav_max_threshold=500,
     mav_circularity_threshold=0.2,
     fill_holes=True,
-    debug=False,
 ):
     """
     Postprocessing for emcapsulin segmentation with multiple steps:
@@ -108,7 +103,7 @@ def postprocess(
 
                 # check if circular enough
                 circularity = get_circularity(
-                    numpy_array=extracted_image.astype(dtype=np.int32), debug=debug
+                    numpy_array=extracted_image.astype(dtype=np.int32)
                 )
                 if circularity > mav_circularity_threshold:
 

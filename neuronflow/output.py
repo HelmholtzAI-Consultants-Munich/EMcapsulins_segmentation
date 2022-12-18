@@ -84,8 +84,8 @@ def create_output_files(
     vprint("*** segmentation_map_int.shape:", segmentation_map_int.shape)
 
     nifti_segmentation = nib.Nifti1Image(segmentation_map_int, np.eye(4))
-    vprint("** saving:", output_file)
-    nib.save(nifti_segmentation, output_file)
+    vprint("** saving:", segmentation_file)
+    nib.save(nifti_segmentation, segmentation_file)
     # saving pngs is problematic, therefore we go for nifti
     # cv2.imwrite(output_file, segmentation_map_int)
 

@@ -27,7 +27,7 @@ We include some example input and output files for replication.
     
 ## Usuage
 
-**run_inference.py**: Example script for inference
+**run_inference.py** <-- Example script for inference
 
 
 ## Citation

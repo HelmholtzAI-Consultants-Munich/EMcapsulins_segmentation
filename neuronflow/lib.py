@@ -1,7 +1,6 @@
 # basics
 import os
 import numpy as np
-from path import Path
 from tqdm import tqdm
 import time
 

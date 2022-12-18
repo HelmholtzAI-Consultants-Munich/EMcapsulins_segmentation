@@ -56,8 +56,8 @@ def postprocess(
     polished_segmentation_file,
     prune_threshold=42,
     majority_vote=True,
-    max_mav_threshold=500,
-    circularity_threshold=0.2,
+    mav_max_threshold=500,
+    mav_circularity_threshold=0.2,
     fill_holes=True,
     debug=False,
 ):
@@ -104,13 +104,13 @@ def postprocess(
             instance_mask = components == segid
             extracted_image = multi_segmentation * instance_mask
             # majority vote only if the object is not too big
-            if np.count_nonzero(extracted_image) < max_mav_threshold:
+            if np.count_nonzero(extracted_image) < mav_max_threshold:
 
                 # check if circular enough
                 circularity = get_circularity(
                     numpy_array=extracted_image.astype(dtype=np.int32), debug=debug
                 )
-                if circularity > circularity_threshold:
+                if circularity > mav_circularity_threshold:
 
                     # majority vote only if unique most frequent value occurs
                     most_frequent_value = multimode(

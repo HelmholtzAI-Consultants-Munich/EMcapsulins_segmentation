@@ -12,7 +12,8 @@ microscopy_images = input_folder.files()  # find all images
 
 # loop through images
 for img in tqdm(microscopy_images):
-    identity = img.name[:-4]  # image name to use as prefix
+    prefix = img.name[:-4]  # image name to use as prefix
+    identity = target_folder + "/" + prefix + "/" + prefix
 
     segmentation_file = identity + "_segmentation.nii.gz"
 
@@ -48,8 +49,8 @@ for img in tqdm(microscopy_images):
         # everything from here is optional and can be adjusted to your needs
         prune_threshold=42,
         majority_vote=True,
-        max_mav_threshold=500,
-        circularity_threshold=0.2,
+        mav_max_threshold=500,
+        mav_circularity_threshold=0.2,
         fill_holes=True,
         debug=False,
     )

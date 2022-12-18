@@ -26,8 +26,8 @@ from monai.transforms import (
 )
 
 # custom
+from neuronflow.utils import turbopath
 from neuronflow.output import create_output_files
-from neuronflow.postprocessing import postprocess
 
 
 # GO
@@ -137,7 +137,7 @@ def single_inference(
         act="mish",
     )
 
-    model_weights = Path(os.path.abspath(model_weights))
+    model_weights = turbopath(model_weights)
     checkpoint = torch.load(model_weights, map_location="cpu")
 
     # inferer
@@ -213,22 +213,9 @@ def single_inference(
 
             # loop through elements in batch
             for element in range(outputs.shape[0]):
-
                 print("** processing:", data["image_path"][element])
 
-                # output_folder = (
-                #     testing_session_path
-                #     + "/segmentations/"
-                #     + str(data["exam"][element])
-                # )
-                os.makedirs(output_folder, exist_ok=True)
-
                 onehot_model_output = outputs[element]
-
-                # identity = output_folder + "/" + data["exam"][element]
-                identity = output_folder + "/" + prefix
-
-                segmentation_file = identity + "_segmentation.nii.gz"
 
                 create_output_files(
                     onehot_model_outputs_CHW=onehot_model_output,
@@ -244,11 +231,6 @@ def single_inference(
                     mmMx_output_file=mmMx_output_file,
                     mTm_output_file=mTm_output_file,
                     mQtTm_output_file=mQtTm_output_file,
-                )
-
-                postprocess(
-                    raw_segmentation_file=segmentation_file,
-                    polished_segmentation_file=identity + "_postprocessed.nii.gz",
                 )
 
     if verbosity == True:

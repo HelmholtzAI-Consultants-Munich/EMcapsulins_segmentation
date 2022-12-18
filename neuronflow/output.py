@@ -12,7 +12,7 @@ def vprint(*args):
 
 def _bg_fg_network_output_saver(
     sigmoid_activated_outputs,
-    binary_output_file,
+    binary_segmentation_file,
     binary_threshold,
     background_output_file,
     foreground_output_file,
@@ -21,11 +21,11 @@ def _bg_fg_network_output_saver(
     vprint("*** bg_data.shape:", bg_data.shape)
     fg_data = (bg_data * -1) + 1
 
-    if binary_output_file is not None:
-        binarized_data = fg_data > binary_threshold
+    if binary_segmentation_file is not None:
+        binarized_data = fg_data >= binary_threshold
         binarized_data = binarized_data.astype(dtype=np.uint8)
         binary_nifti_image = nib.Nifti1Image(binarized_data, np.eye(4))
-        nib.save(binary_nifti_image, binary_output_file)
+        nib.save(binary_nifti_image, binary_segmentation_file)
 
     if background_output_file is not None:
         bg_nifti_image = nib.Nifti1Image(bg_data, np.eye(4))
@@ -48,8 +48,8 @@ def _network_output_saver(
 
 def create_output_files(
     onehot_model_outputs_CHW,
-    output_file,
-    binary_output_file=None,
+    segmentation_file,
+    binary_segmentation_file=None,
     binary_threshold=0.5,
     background_output_file=None,
     foreground_output_file=None,
@@ -112,7 +112,7 @@ def create_output_files(
 
     _bg_fg_network_output_saver(
         sigmoid_activated_outputs=sigmoid_activated_outputs,
-        binary_output_file=binary_output_file,
+        binary_segmentation_file=binary_segmentation_file,
         binary_threshold=binary_threshold,
         background_output_file=background_output_file,
         foreground_output_file=foreground_output_file,

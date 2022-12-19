@@ -8,3 +8,4 @@ path==16.5.0
 tqdm==4.64.1
 itk==5.3.0
 connected-components-3d==3.10.3
+scikit-image

@@ -32,7 +32,7 @@ for img in tqdm(microscopy_images):
         mmMx_output_file=identity + "_out-2M-Mx.nii.gz",
         mTm_output_file=identity + "_out-1M-Tm.nii.gz",
         mQtTm_output_file=identity + "_out-1M-Qt-Tm.nii.gz",
-        cuda_devices="1",
+        cuda_devices="0",
         tta=True,
         sliding_window_batch_size=32,
         sliding_window_overlap=0.5,

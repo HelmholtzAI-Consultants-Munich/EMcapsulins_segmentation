@@ -44,7 +44,7 @@ def single_inference(
     mmMx_output_file=None,
     mTm_output_file=None,
     mQtTm_output_file=None,
-    cuda_devices="1",
+    cuda_devices="0",
     tta=True,
     sliding_window_batch_size=32,
     sliding_window_overlap=0.5,

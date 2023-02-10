@@ -42,6 +42,22 @@ We include some example input and output files for replication.
 '''python training_script_headless.py --data_folder example_data/example_outputs --model_folder test'''
 
 
+
+Napari viewer for labels: 
+
+1) Go into the napari folder
+
+2) Start 'python napari_plugin_tif.py'
+
+3) Select the directory with images on the right hand side
+
+4) Scan directory: The program is looking at pairs of files ending with _mic.tif and _label.tif
+
+5) Select image, load it and use the annotation tools to correct the mask
+
+6) Save annotation (this updates the _label.tif file)
+
+
 ## Citation
 when using the software please cite tba
 

@@ -1,0 +1,17 @@
+torch
+torchvision
+pytorch-ignite
+monai==1.0
+nibabel==4.0.2
+numpy==1.23.5
+path==16.5.0
+tqdm==4.64.1
+itk==5.3.0
+connected-components-3d==3.10.3
+scikit-image==0.19.3
+tifffile==2023.2.3
+numpy
+napari[all]
+magicgui
+matplotlib
+

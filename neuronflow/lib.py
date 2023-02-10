@@ -211,11 +211,16 @@ def single_inference(
                 print("outputs shape 0:", outputs.shape[0])
 
             # loop through elements in batch
+            
             for element in range(outputs.shape[0]):
                 print("** processing:", data["image_path"][element])
 
                 onehot_model_output = outputs[element]
 
+
+		# Swapping axes to align output :/
+                onehot_model_output = onehot_model_output.transpose(1,2)
+		
                 create_output_files(
                     onehot_model_outputs_CHW=onehot_model_output,
                     segmentation_file=segmentation_file,

@@ -2,6 +2,7 @@ import os
 from path import Path
 import nibabel as nib
 import numpy as np
+import tifffile
 # import imageio
 
 
@@ -22,14 +23,13 @@ def turbopath(the_path):
 #     return img_data
 
 
-def read_nifti(nifti_path):
-    nifti = nib.load(nifti_path)
-    nifti_data = nifti.get_fdata()
-    return nifti_data
 
 
-def write_nifti(numpy_array, output_nifti_path):
-    nifti_image = nib.Nifti1Image(numpy_array, np.eye(4))
-    vprint("** saving:", output_nifti_path)
-    nib.save(nifti_image, output_nifti_path)
+def read_tif(tif_path):
+    tif = tifffile.imread(tif_path)
+    return tif
+
+def write_tif(numpy_array, output_tif_path):
+    tifffile.imsave(output_tif_path, numpy_array.astype(np.uint8))
     return True
+

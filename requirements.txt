@@ -1,6 +1,6 @@
 torch
 torchvision
-pytorch-ignite
+pytorch-ignite==0.4.10
 monai==1.0
 nibabel==4.0.2
 numpy==1.23.5
@@ -10,8 +10,13 @@ itk==5.3.0
 connected-components-3d==3.10.3
 scikit-image==0.19.3
 tifffile==2023.2.3
-numpy
+numpy==1.23.5
 napari[all]
-magicgui
-matplotlib
+napari==0.4.17
+napari-console==0.0.7
+napari-plugin-engine==0.2.0
+napari-svg==0.1.6
+magicgui==0.6.1
+matplotlib==3.6.3
+matplotlib-inline==0.1.6
 

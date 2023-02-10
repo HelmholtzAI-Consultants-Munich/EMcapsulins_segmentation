@@ -51,71 +51,14 @@ crop_size = (512, 512)
 
 
 
-
-class ConvertToMultiChannelEmcapsClassesd(MapTransform):
-    """
-    Convert labels to multi channels:
-    TODO
-    1:  "*_elab_1M-Qt.png",
-    2:  "*_elab_2M-Qt.png",
-    3:  "*_elab_3M-Qt.png",
-    4:  "*_elab_1M-Mx.png",
-    5:  "*_elab_2M-Mx.png",
-    6:  "*_elab_1M-Tm.png",
-    7: 1+ 6
-    8: 1+2+3+4+5+6
-    """
-
-    def __call__(self, data):
-        d = dict(data)
-        for key in self.keys:
-            result = []
-
-            # background channel
-            result.append(d[key] == 0)
-
-            # mQt channel
-            result.append(d[key] == 1)
-
-            # mmQt channel
-            result.append(d[key] == 2)
-
-            # mmmQt channel
-            result.append(d[key] == 3)
-
-            # mMx channel
-            result.append(d[key] == 4)
-
-            # mmMx channel
-            result.append(d[key] == 5)
-
-            # mTm channel
-            result.append(d[key] == 6)
-
-
-            # merge label 1 and 6 to create combo channel
-            result.append(torch.logical_or(d[key] == 1, d[key] == 6))
-
-            # # all channel
-            # result.append(d[key] > 0)
-
-            # finalize
-            d[key] = torch.stack(result, axis=0).float()
-            # print(d[key].shape)
-        return d
-
-
-
-
 def get_xforms(mode="train", keys=("image", "label")):
     """returns a composed transform for train/val/infer."""
 
     xforms = [
         # << PREPROCESSING transforms >>
         LoadImaged(keys=keys),
-        EnsureChannelFirstd(keys=[keys[0]]),
+        EnsureChannelFirstd(keys=keys),
         EnsureTyped(keys=keys),
-        ConvertToMultiChannelEmcapsClassesd(keys=[keys[1]]),
         Lambdad(keys, np.nan_to_num),
         RandGaussianNoised(keys=[keys[0]], prob=0.2, std=0.01),
         RandFlipd(keys=keys, spatial_axis=0, prob=0.5),

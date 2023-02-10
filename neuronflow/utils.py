@@ -18,13 +18,6 @@ def turbopath(the_path):
     return return_path
 
 
-# def read_png(png_path):
-#     img_data = imageio.imread(png_path)
-#     return img_data
-
-
-
-
 def read_tif(tif_path):
     tif = tifffile.imread(tif_path)
     return tif

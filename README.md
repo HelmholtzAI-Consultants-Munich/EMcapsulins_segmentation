@@ -37,6 +37,10 @@ We include some example input and output files for replication.
 
 **run_single_inference.py** <-- A script that provides a method for running the network on a single image
 
+**training_script_headless.py** <-- Training the model form scratch.
+
+'''python training_script_headless.py --data_folder example_data/example_outputs --model_folder test'''
+
 
 ## Citation
 when using the software please cite tba

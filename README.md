@@ -26,8 +26,8 @@ We include some example input and output files for replication.
     ```
     
 ## Usuage
-
-**run_inference.py** <-- Example script for inference
+**run_inference_tiff.py** <-- Example script for inference creating tiff files
+**run_inference_nifti.py** <-- Example script for inference creating nifti files
 
 
 ## Citation

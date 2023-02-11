@@ -67,7 +67,7 @@ def postprocess(
     raw_segmentation_file = turbopath(raw_segmentation_file)
     polished_segmentation_file = turbopath(polished_segmentation_file)
 
-    raw_segmentation = read_image()(raw_segmentation_file)
+    raw_segmentation = read_image(raw_segmentation_file)
     raw_segmentation = raw_segmentation.astype(dtype=np.int32)
 
     binary_segmentation = raw_segmentation > 0

@@ -57,7 +57,7 @@ def single_inference(
     call this function to run the sliding window inference.
 
     Parameters:
-    niftis: list of nifti files to infer
+    microscopy_file: the miscroscopy file to infer
     comment: string to comment
     model_weights: Path to the model weights
     tta: whether to run test time augmentations

@@ -1,6 +1,6 @@
 import cc3d
 import numpy as np
-from neuronflow.utils import turbopath, read_nifti, write_nifti
+from neuronflow.utils import turbopath, read_image, write_image
 from statistics import multimode
 
 from skimage import measure
@@ -67,7 +67,7 @@ def postprocess(
     raw_segmentation_file = turbopath(raw_segmentation_file)
     polished_segmentation_file = turbopath(polished_segmentation_file)
 
-    raw_segmentation = read_nifti(raw_segmentation_file)
+    raw_segmentation = read_image()(raw_segmentation_file)
     raw_segmentation = raw_segmentation.astype(dtype=np.int32)
 
     binary_segmentation = raw_segmentation > 0
@@ -127,9 +127,9 @@ def postprocess(
         multi_segmentation = np.array(hole_fill_tfs(multi_segmentation))
         multi_segmentation = multi_segmentation[0]  # get rid of channel dimension again
 
-    ### ** Save nifti ** ###
-    write_nifti(
+    ### ** Save image ** ###
+    write_image(
         numpy_array=multi_segmentation,
-        output_nifti_path=polished_segmentation_file,
+        image_path=polished_segmentation_file,
     )
     return True

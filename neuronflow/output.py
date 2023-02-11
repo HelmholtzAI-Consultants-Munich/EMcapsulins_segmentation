@@ -1,6 +1,7 @@
 import numpy as np
-import nibabel as nib
 import torch
+
+from neuronflow.utils import write_image
 
 
 def vprint(*args):
@@ -24,16 +25,13 @@ def _bg_fg_network_output_saver(
     if binary_segmentation_file is not None:
         binarized_data = fg_data >= binary_threshold
         binarized_data = binarized_data.astype(dtype=np.uint8)
-        binary_nifti_image = nib.Nifti1Image(binarized_data, np.eye(4))
-        nib.save(binary_nifti_image, binary_segmentation_file)
+        write_image(numpy_array=binarized_data, image_path=binary_segmentation_file)
 
     if background_output_file is not None:
-        bg_nifti_image = nib.Nifti1Image(bg_data, np.eye(4))
-        nib.save(bg_nifti_image, background_output_file)
+        write_image(numpy_array=bg_data, image_path=background_output_file)
 
     if foreground_output_file is not None:
-        fg_nifti_image = nib.Nifti1Image(fg_data, np.eye(4))
-        nib.save(fg_nifti_image, foreground_output_file)
+        write_image(numpy_array=fg_data, image_path=foreground_output_file)
 
 
 def _network_output_saver(
@@ -42,8 +40,7 @@ def _network_output_saver(
     if network_output_file is not None:
         data = sigmoid_activated_outputs[channel_number]
         vprint("*** data.shape:", data.shape)
-        nifti_image = nib.Nifti1Image(data, np.eye(4))
-        nib.save(nifti_image, network_output_file)
+        write_image(numpy_array=data, image_path=network_output_file)
 
 
 def create_output_files(
@@ -82,11 +79,9 @@ def create_output_files(
     vprint("*** segmentation_map.shape:", segmentation_map.shape)
     segmentation_map_int = segmentation_map.astype(np.uint8)
     vprint("*** segmentation_map_int.shape:", segmentation_map_int.shape)
-
-    nifti_segmentation = nib.Nifti1Image(segmentation_map_int, np.eye(4))
-    vprint("** saving:", segmentation_file)
-    nib.save(nifti_segmentation, segmentation_file)
-    # saving pngs is problematic, therefore we go for nifti
+    write_image(
+        numpy_array=segmentation_map_int, image_path=segmentation_file
+    )  # saving pngs is problematic, therefore we go for nifti
     # cv2.imwrite(output_file, segmentation_map_int)
 
     # generate model outputs

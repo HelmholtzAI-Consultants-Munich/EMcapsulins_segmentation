@@ -128,8 +128,11 @@ def postprocess(
         multi_segmentation = multi_segmentation[0]  # get rid of channel dimension again
 
     ### ** Save image ** ###
+    multi_segmentation_int = multi_segmentation.astype(
+        dtype=np.uint8
+    )  # convert to uint8 again
     write_image(
-        numpy_array=multi_segmentation,
+        numpy_array=multi_segmentation_int,
         image_path=polished_segmentation_file,
     )
     return True

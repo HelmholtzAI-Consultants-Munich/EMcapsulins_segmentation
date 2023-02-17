@@ -45,7 +45,7 @@ tba
 
 further details in requirements.txt
 
-## I want to train my own EMcapsulin segmentation network!
+## train your own EMcapsulin segmentation network!
 Please have a look at this [repository](https://github.com/MartGro/EMcapsulin_Toolbox)
 
 ## Licensing

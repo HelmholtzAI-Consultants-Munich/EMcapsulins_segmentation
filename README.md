@@ -32,10 +32,17 @@ We include some example input and output files for replication.
 
 
 ## Citation
-when using the software please cite tba
+when using the software please cite https://www.nature.com/articles/s41587-023-01713-y
 
 ```
-tba
+@article{sigmund2023genetically,
+  title={Genetically encoded barcodes for correlative volume electron microscopy},
+  author={Sigmund, Felix and Berezin, Oleksandr and Beliakova, Sofia and Magerl, Bernhard and Drawitsch, Martin and Piovesan, Alberto and Gon{\c{c}}alves, Filipa and Bodea, Silviu-Vasile and Winkler, Stefanie and Bousraou, Zoe and others},
+  journal={Nature Biotechnology},
+  pages={1--12},
+  year={2023},
+  publisher={Nature Publishing Group US New York}
+}
 ```
 
 ## Recommended Environment
